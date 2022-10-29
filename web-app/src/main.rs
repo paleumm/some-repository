@@ -13,4 +13,6 @@ struct TodolsitEntry {
     title: String,
 }
 
-fn main() {}
+fn main() {
+    println!("Hello, World")
+}
