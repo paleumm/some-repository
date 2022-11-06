@@ -5,4 +5,8 @@ fn main() {
         .env("MY_PATH", "/tmp")
         .spawn()
         .expect("Command failed to execute");
+    Command::new("env")
+        .env_clear()
+        .spawn()
+        .expect("Command failed to execute");
 }
