@@ -1,8 +1,8 @@
 mod cpu;
-use cpu::CPU;
+use cpu::RIA2;
 
 fn main() {
-    let mut cpu = CPU {
+    let mut cpu = RIA2 {
         registers: [0; 16],
         memory: [0; 4096],
         position_in_memory: 0,

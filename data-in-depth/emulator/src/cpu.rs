@@ -1,10 +1,10 @@
-pub struct CPU {
+pub struct RIA2 {
     pub registers: [u8; 16], // 16 registers
     pub position_in_memory: usize,
     pub memory: [u8; 0x1000],
 }
 
-impl CPU {
+impl RIA2 {
     pub fn read_opcode(&self) -> u16 {
         let p = self.position_in_memory;
         let op_byte1 = self.memory[p] as u16;
