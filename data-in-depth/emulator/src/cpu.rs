@@ -1,14 +1,14 @@
 pub struct CPU {
-    current_operation: u16, // opcode
-    registers: [u8; 2],     // 2 registers
+    pub current_operation: u16, // opcode
+    pub registers: [u8; 2],     // 2 registers
 }
 
 impl CPU {
-    fn read_opcode(&self) -> u16 {
+    pub fn read_opcode(&self) -> u16 {
         self.current_operation
     }
 
-    fn run(&mut self) {
+    pub fn run(&mut self) {
         // loop {
         let opcode = self.read_opcode();
 
@@ -19,12 +19,12 @@ impl CPU {
 
         match (c, x, y, d) {
             (0x8, _, _, 0x4) => self.add_xy(x, y),
-            _ => todo!("opcode {:0x4x}", opcode),
+            _ => todo!("opcode {:04x}", opcode),
         }
         // }
     }
 
-    fn add_xy(&mut self, x: u8, y: u8) {
+    pub fn add_xy(&mut self, x: u8, y: u8) {
         self.registers[x as usize] += self.registers[y as usize];
     }
 }
