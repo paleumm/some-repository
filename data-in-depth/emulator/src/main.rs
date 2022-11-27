@@ -1,5 +1,5 @@
 mod cpu;
-use cpu::RIA2;
+use cpu::{RIA2, RIA3};
 
 fn main() {
     let mut cpu = RIA2 {
@@ -31,4 +31,35 @@ fn main() {
 
     assert_eq!(cpu.registers[0], 35);
     println!("5 + 10 + 10 + 10 = {}", cpu.registers[0]);
+
+    let mut ria3 = RIA3 {
+        registers: [0; 16],
+        memory: [0; 4096],
+        position_in_memory: 0,
+        stack: [0; 16],
+        stack_pointer: 0,
+    };
+
+    ria3.registers[0] = 5;
+    ria3.registers[1] = 10;
+
+    let ria3_mem = &mut ria3.memory;
+    ria3_mem[0x000] = 0x21;
+    ria3_mem[0x001] = 0x00;
+    ria3_mem[0x002] = 0x21;
+    ria3_mem[0x003] = 0x00;
+    ria3_mem[0x004] = 0x00;
+    ria3_mem[0x005] = 0x00;
+
+    ria3_mem[0x100] = 0x80;
+    ria3_mem[0x101] = 0x14;
+    ria3_mem[0x102] = 0x80;
+    ria3_mem[0x103] = 0x14;
+    ria3_mem[0x104] = 0x00;
+    ria3_mem[0x105] = 0xEE;
+
+    ria3.run();
+
+    assert_eq!(ria3.registers[0], 45);
+    println!("5 + (10 * 2) + (10 * 2) = {}", ria3.registers[0]);
 }
