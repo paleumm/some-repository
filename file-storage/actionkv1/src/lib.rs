@@ -26,4 +26,6 @@ impl ActionKV {
         let index = HashMap::new();
         Ok(ActionKV { f: f, index: index })
     }
+
+    pub fn load(&mut self)
 }
